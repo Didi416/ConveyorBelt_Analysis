@@ -19,9 +19,10 @@ find_package(geometry_msgs REQUIRED)
 find_package(cv_bridge REQUIRED)
 find_package(image_transport REQUIRED)
 find_package(OpenCV REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
 
 add_executable(load_profile src/load_profile.cpp)
-ament_target_dependencies(load_profile rclcpp std_msgs sensor_msgs geometry_msgs cv_bridge image_transport OpenCV)
+ament_target_dependencies(load_profile rclcpp std_msgs sensor_msgs geometry_msgs cv_bridge image_transport OpenCV tf2_geometry_msgs)
 
 install(TARGETS
   load_profile
@@ -39,8 +40,8 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-# install(DIRECTORY launch rviz
-#   DESTINATION share/conveyor_belt
-# )
+install(DIRECTORY launch models worlds
+  DESTINATION share/conveyor_belt
+)
 
 ament_package()

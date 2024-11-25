@@ -22,5 +22,7 @@
 
   <export>
     <build_type>ament_cmake</build_type>
+    <!-- Add line below to allow gazebo to access model files in install directory -->
+    <gazebo_ros gazebo_model_path="${prefix}/models"/> 
   </export>
 </package>

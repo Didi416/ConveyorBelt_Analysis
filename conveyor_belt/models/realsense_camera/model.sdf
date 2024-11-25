@@ -32,12 +32,12 @@
 
     <!-- Legs of the tripod -->
     <link name="leg1">
-      <pose>-0.15 0 0.5 0 0.2967 0</pose>
+      <pose>-0.15 0 1 0 0.1489 0</pose>
       <visual name="leg1_visual">
         <geometry>
           <cylinder>
             <radius>0.02</radius>
-            <length>1.044</length>
+            <length>2.022</length>
           </cylinder>
         </geometry>
         <material>
@@ -49,7 +49,7 @@
         <geometry>
           <cylinder>
             <radius>0.02</radius>
-            <length>1.044</length>
+            <length>2.022</length>
           </cylinder>
         </geometry>
       </collision>
@@ -59,12 +59,12 @@
     </link>
 
     <link name="leg2">
-      <pose>0.075 0.1299 0.5 0 0.2967 -2.094</pose>
+      <pose>0.075 0.1299 1 0 0.1489 -2.094</pose>
       <visual name="leg2_visual">
         <geometry>
           <cylinder>
             <radius>0.02</radius>
-            <length>1.044</length>
+            <length>2.022</length>
           </cylinder>
         </geometry>
         <material>
@@ -76,7 +76,7 @@
         <geometry>
           <cylinder>
             <radius>0.02</radius>
-            <length>1.044</length>
+            <length>2.022</length>
           </cylinder>
         </geometry>
       </collision>
@@ -86,12 +86,12 @@
     </link>
 
     <link name="leg3">
-      <pose>0.075 -0.1299 0.5 0 0.2967 2.094</pose>
+      <pose>0.075 -0.1299 1 0 0.1489 2.094</pose>
       <visual name="leg3_visual">
         <geometry>
           <cylinder>
             <radius>0.02</radius>
-            <length>1.044</length>
+            <length>2.022</length>
           </cylinder>
         </geometry>
         <material>
@@ -103,7 +103,7 @@
         <geometry>
           <cylinder>
             <radius>0.02</radius>
-            <length>1.044</length>
+            <length>2.022</length>
           </cylinder>
         </geometry>
       </collision>
@@ -114,7 +114,7 @@
 
     <!-- Top platform -->
     <link name="top">
-      <pose>0 0 1.0 0 0 0</pose>
+      <pose>0 0 2.0 0 0 0</pose>
       <visual name="top_visual">
         <geometry>
           <cylinder>
@@ -163,7 +163,7 @@
 
     <!-- RealSense Camera Link -->
     <link name="realsense_link">
-      <pose>0 0 1.05 0 0.524 0</pose> <!-- 30 degree angle down -->
+      <pose>0 0 2.05 0 0.524 0</pose> <!-- 30 degree angle down -->
       <visual name="realsense_link_visual">
         <pose>0 0 0 1.57 0 -1.57</pose>
         <geometry>
