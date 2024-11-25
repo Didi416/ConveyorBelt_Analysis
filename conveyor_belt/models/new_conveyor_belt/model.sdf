@@ -54,7 +54,7 @@
                     <geometry>
                         <mesh>
                             <scale>1 1 1</scale>
-                            <uri>model://conveyor_belt/meshes/new_belt.dae</uri>
+                            <uri>model://conveyor_belt/meshes/new_belt_angled.dae</uri>
                         </mesh>
                     </geometry>
                 </visual>
@@ -63,7 +63,7 @@
                     <geometry>
                         <mesh>
                             <scale>1 1 1</scale>
-                            <uri>model://conveyor_belt/meshes/new_belt.dae</uri>
+                            <uri>model://conveyor_belt/meshes/new_belt_angled.dae</uri>
                         </mesh>
                     </geometry>
                 </collision>
@@ -93,7 +93,7 @@
                 <collision name="belt_collision">
                     <geometry>
                         <box>
-                            <size>0.425 3.2 0.00001</size>
+                            <size>0.4 3.2 0.00001</size>
                         </box>
                     </geometry>
                     <surface>
