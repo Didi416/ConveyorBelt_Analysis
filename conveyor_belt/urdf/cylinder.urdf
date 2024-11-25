@@ -1,0 +1,30 @@
+<robot name="cylinder">
+  <!-- Cylinder Link -->
+  <link name="link">
+    <!-- Inertial properties -->
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="1.0" />
+      <inertia ixx="0.02" iyy="0.02" izz="0.02" ixy="0.0" ixz="0.0" iyz="0.0" />
+    </inertial>
+
+    <!-- Visual representation -->
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.05" length="0.1" />
+      </geometry>
+      <material name="green">
+        <color rgba="0.2 0.7 0.2 1" />
+      </material>
+    </visual>
+
+    <!-- Collision geometry -->
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <cylinder radius="0.05" length="0.1" />
+      </geometry>
+    </collision>
+  </link>
+</robot>

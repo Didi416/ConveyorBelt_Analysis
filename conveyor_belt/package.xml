@@ -19,6 +19,8 @@
   <depend>cv_bridge</depend>
   <depend>image_transport</depend>
   <depend>OpenCV</depend>
+  <depend>gazebo_msgs</depend>
+  <depend>ament_index_cpp</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

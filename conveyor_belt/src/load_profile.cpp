@@ -181,7 +181,7 @@ class ColourMap : public rclcpp::Node {
     rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr imagePub_;
 };
 
-int main(int argc, char *argv[]) {
+int main(int argc, char** argv) {
   rclcpp::init(argc, argv);
   // create a ros2 node
   auto node = std::make_shared<ColourMap>();

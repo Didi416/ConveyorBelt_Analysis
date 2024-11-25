@@ -12,6 +12,7 @@ find_package(ament_cmake REQUIRED)
 # find_package(<dependency> REQUIRED)
 
 find_package(ament_cmake REQUIRED)
+find_package(ament_index_cpp REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
@@ -20,12 +21,16 @@ find_package(cv_bridge REQUIRED)
 find_package(image_transport REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
+find_package(gazebo_msgs REQUIRED)
 
 add_executable(load_profile src/load_profile.cpp)
 ament_target_dependencies(load_profile rclcpp std_msgs sensor_msgs geometry_msgs cv_bridge image_transport OpenCV tf2_geometry_msgs)
+add_executable(spawnObjects src/spawnObjects.cpp)
+ament_target_dependencies(spawnObjects rclcpp std_msgs gazebo_msgs)
 
 install(TARGETS
   load_profile
+  spawnObjects
   DESTINATION lib/conveyor_belt)
 
 if(BUILD_TESTING)
@@ -40,7 +45,7 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-install(DIRECTORY launch models worlds
+install(DIRECTORY launch models worlds urdf
   DESTINATION share/conveyor_belt
 )
 
