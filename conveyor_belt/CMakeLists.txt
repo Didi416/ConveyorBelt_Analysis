@@ -48,7 +48,7 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
-install(DIRECTORY launch models worlds urdf
+install(DIRECTORY launch models worlds urdf rviz
   DESTINATION share/conveyor_belt
 )
 

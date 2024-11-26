@@ -17,13 +17,37 @@ def generate_launch_description():
     
     # identify paths to requried world
     world = os.path.join(pkg_project, 'worlds', 'project_world_2.world')
-    # rviz_config_dir = os.path.join(pkg_project, 'rviz', 'rviz.rviz')
+    rviz_config_dir = os.path.join(pkg_project, 'rviz', 'rviz.rviz')
     
     # set use_sim_time as well as global coordinates for the turtlebot upon launch
-    # use_sim_time = LaunchConfiguration('use_sim_time', default='true'),
+    use_sim_time = LaunchConfiguration('use_sim_time', default='true'),
+    x_pose = LaunchConfiguration('x_pose', default='-2.0')
+    y_pose = LaunchConfiguration('y_pose', default='0.0')
+
+    urdf_path = os.path.join(
+        get_package_share_directory('conveyor_belt'), 'urdf', 'camera.urdf')
+
+    with open(urdf_path, 'r') as infp:
+        robot_desc = infp.read()
+
+    model_path = os.path.join(
+        get_package_share_directory('conveyor_belt'), 'models','realsense_camera', 'model.sdf')
 
     # Start Launch Description
     gazebo_LD = LaunchDescription([
+
+        DeclareLaunchArgument(
+            'use_sim_time',
+            default_value='true',
+            description='Use simulation (Gazebo) clock if true'),
+
+        DeclareLaunchArgument(
+            'x_pose', default_value='-2.0',
+            description='Specify namespace of the robot'),
+
+        DeclareLaunchArgument(
+            'y_pose', default_value='0.0',
+            description='Specify namespace of the robot'),
         # Gazebo Launch directives
         # Include in launch description the gazebo server and client files
         IncludeLaunchDescription(
@@ -51,6 +75,38 @@ def generate_launch_description():
             shell=True
         ),
 
+        Node(
+            package='robot_state_publisher',
+            executable='robot_state_publisher',
+            name='robot_state_publisher',
+            output='screen',
+            parameters=[{
+                'use_sim_time': use_sim_time,
+                'robot_description': robot_desc
+            }],
+        ),
+
+        Node(
+            package='gazebo_ros',
+            executable='spawn_entity.py',
+            arguments=[
+                '-entity', "camera_robot",
+                '-file', model_path,
+                '-x', x_pose,
+                '-y', y_pose,
+                '-z', '0.01'
+            ],
+            output='screen',
+        ),
+
+        Node(
+            package='rviz2',
+            executable='rviz2',
+            name='rviz2',
+            arguments=['-d', rviz_config_dir],
+            parameters=[{'use_sim_time': use_sim_time}],
+            output='screen'),
+
         # Launch spawn node
         Node(
             package='conveyor_belt',
@@ -62,6 +118,12 @@ def generate_launch_description():
             package='conveyor_belt',
             executable='despawnObjects',
             name='despawnObjects',
+            output='screen'),
+
+        Node(
+            package='conveyor_belt',
+            executable='load_profile',
+            name='load_profile',
             output='screen'),
     ])
     return gazebo_LD

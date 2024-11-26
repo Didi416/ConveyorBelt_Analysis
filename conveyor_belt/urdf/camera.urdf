@@ -1,0 +1,207 @@
+<robot name="camera_robot">
+  <!-- Base of the tripod -->
+    <link name="base">
+        <pose xyz="0 0 0.025" rpy="0 0 0"/>
+        <visual name="base_visual">
+        <geometry>
+            <cylinder radius="0.3" length="0.05"/>
+        </geometry>
+        </visual>
+        <collision name="base_collision">
+        <geometry>
+            <cylinder radius="0.3" length="0.05"/>
+        </geometry>
+        </collision>
+        <inertial>
+        <mass value="2.0"/>
+        <inertia ixx="0.15125" ixy="0.0" ixz="0.0" iyy="0.15125" iyz="0.0" izz="0.09" />
+        </inertial>
+    </link>
+
+    <!-- Legs of the tripod -->
+    <link name="leg1">
+        <pose xyz="-0.15 0 1" rpy="0 0.1489 0"/>
+        <visual name="leg1_visual">
+        <geometry>
+            <cylinder radius="0.02" length="2.022"/>
+        </geometry>
+        </visual>
+        <collision name="leg1_collision">
+        <geometry>
+            <cylinder radius="0.02" length="2.022"/>
+        </geometry>
+        </collision>
+        <inertial>
+        <mass value="0.2"/>
+        <inertia ixx="0.06799" ixy="0.0" ixz="0.0" iyy="0.06799" iyz="0.0" izz="0.0004" />
+        </inertial>
+    </link>
+
+    <link name="leg2">
+        <pose xyz="0.075 0.1299 1" rpy="0 0.1489 -2.094"/>
+        <visual name="leg2_visual">
+        <geometry>
+            <cylinder radius="0.02" length="2.022"/>
+        </geometry>
+        </visual>
+        <collision name="leg2_collision">
+        <geometry>
+            <cylinder radius="0.02" length="2.022"/>
+        </geometry>
+        </collision>
+        <inertial>
+        <mass value="0.2"/>
+        <inertia ixx="0.06799" ixy="0.0" ixz="0.0" iyy="0.06799" iyz="0.0" izz="0.0004" />
+        </inertial>
+    </link>
+
+    <link name="leg3">
+        <pose xyz="0.075 -0.1299 1" rpy="0 0.1489 2.094"/>
+        <visual name="leg3_visual">
+        <geometry>
+            <cylinder radius="0.02" length="2.022"/>
+        </geometry>
+        </visual>
+        <collision name="leg3_collision">
+        <geometry>
+            <cylinder radius="0.02" length="2.022"/>
+        </geometry>
+        </collision>
+        <inertial>
+        <mass value="0.2"/>
+        <inertia ixx="0.06799" ixy="0.0" ixz="0.0" iyy="0.06799" iyz="0.0" izz="0.0004" />
+        </inertial>
+    </link>
+
+    <!-- Top platform -->
+    <link name="top">
+        <pose xyz="0 0 2.0" rpy="0 0 0"/>
+        <visual name="top_visual">
+        <geometry>
+            <cylinder radius="0.05" length="0.02"/>
+        </geometry>
+        </visual>
+        <collision name="top_collision">
+        <geometry>
+            <cylinder radius="0.05" length="0.02"/>
+        </geometry>
+        </collision>
+        <inertial>
+        <mass value="0.5"/>
+        <inertia ixx="0.00065417" ixy="0.0" ixz="0.0" iyy="0.00065417" iyz="0.0" izz="0.000625" />
+        </inertial>
+    </link>
+
+    <!-- Joints -->
+    <joint name="base_leg1" type="fixed">
+        <parent link="base"/>
+        <child link="leg1"/>
+    </joint>
+
+    <joint name="base_leg2" type="fixed">
+        <parent link="base"/>
+        <child link="leg2"/>
+    </joint>
+
+    <joint name="base_leg3" type="fixed">
+        <parent link="base"/>
+        <child link="leg3"/>
+    </joint>
+
+    <joint name="top_base" type="fixed">
+        <parent link="top"/>
+        <child link="base"/>
+    </joint>
+
+    <link name="camera_bottom_screw_frame">
+        <visual>
+        <geometry>
+            <mesh filename="package://conveyor_belt/realsense_camera/meshes/d435.dae" />
+        </geometry>
+        </visual>
+        <collision>
+        <geometry>
+            <mesh filename="package://conveyor_belt/realsense_camera/meshes/d435.dae" />
+        </geometry>
+        </collision>
+    </link>
+
+    <link name="camera_link"></link>
+
+    <link name="camera_depth_frame"></link>
+
+    <link name="camera_depth_optical_frame"></link>
+
+    <link name="camera_color_frame"></link>
+
+    <link name="camera_color_optical_frame"></link>
+
+    <link name="camera_left_ir_frame"></link>
+
+    <link name="camera_left_ir_optical_frame"></link>
+
+    <link name="camera_right_ir_frame"></link>
+
+    <link name="camera_right_ir_optical_frame"></link>
+
+
+    <joint name="camera_joint" type="fixed">
+        <parent link="base" />
+        <child link="camera_bottom_screw_frame" />
+        <pose xyz="0.4 0 0.25" rpy="0 0 0" />
+    </joint>
+
+    <joint name="camera_link_joint" type="fixed">
+        <parent link="camera_bottom_screw_frame" />
+        <child link="camera_link" />
+        <pose xyz="0 0.0175 0.0125 " rpy="0 0 0" />
+    </joint>
+
+    <joint name="camera_depth_joint" type="fixed">
+        <parent link="camera_link" />
+        <child link="camera_depth_frame" />
+        <pose xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
+    <joint name="camera_depth_optical_joint" type="fixed">
+        <parent link="camera_depth_frame" />
+        <child link="camera_depth_optical_frame" />
+        <pose xyz="0 0 0 " rpy="-1.57 0 -1.57" />
+    </joint>
+
+    <joint name="camera_color_joint" type="fixed">
+        <parent link="camera_depth_frame" />
+        <child link="camera_color_frame" />
+        <pose xyz="0 0 0" rpy="0 0 0" />
+    </joint>
+
+    <joint name="camera_color_optical_joint" type="fixed">
+        <parent link="camera_color_frame" />
+        <child link="camera_color_optical_frame" />
+        <pose xyz="0 0 0 " rpy="-1.57 0 -1.57" />
+    </joint>
+
+    <joint name="camera_left_ir_joint" type="fixed">
+        <parent link="camera_depth_frame" />
+        <child link="camera_left_ir_frame" />
+        <pose xyz="0 0 0 " rpy="0 0 0 " />
+    </joint>
+
+    <joint name="camera_left_ir_optical_joint" type="fixed">
+        <parent link="camera_left_ir_frame" />
+        <child link="camera_left_ir_optical_frame" />
+        <pose xyz="0 0 0 " rpy="-1.57 0 -1.57" />
+    </joint>
+
+    <joint name="camera_right_ir_joint" type="fixed">
+        <parent link="camera_depth_frame" />
+        <child link="camera_right_ir_frame" />
+        <pose xyz="0 -0.050 0 " rpy="0 0 0" />
+    </joint>
+
+    <joint name="camera_right_ir_optical_joint" type="fixed">
+        <parent link="camera_right_ir_frame" />
+        <child link="camera_right_ir_optical_frame" />
+        <pose xyz="0 0 0 " rpy="-1.57 0 -1.57" />
+    </joint>
+</robot>

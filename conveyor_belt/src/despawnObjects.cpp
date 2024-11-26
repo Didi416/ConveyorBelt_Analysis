@@ -20,7 +20,7 @@ private:
         // RCLCPP_INFO(this->get_logger(), "Size: %2ld", msg->name.size());
         for (long unsigned int i=0; i<msg->name.size(); i++){
             // RCLCPP_INFO(this->get_logger(), "I: %2ld", i);
-            if(msg->name.at(i) == "ground_plane" || msg->name.at(i) == "conveyor_belt" || msg->name.at(i) == "realsense_camera_0"){
+            if(msg->name.at(i) == "ground_plane" || msg->name.at(i) == "conveyor_belt" || msg->name.at(i) == "camera_robot"){
                 continue;
             }
             // RCLCPP_INFO(this->get_logger(), "Pose: %2f", msg->pose.at(i).position.z);
@@ -41,17 +41,17 @@ private:
         request->name = name;
 
         delete_client_->async_send_request(request, [name](rclcpp::Client<gazebo_msgs::srv::DeleteEntity>::SharedFuture future) {
-            try {
-                auto response = future.get();
-                if (response->success) {
-                    RCLCPP_INFO(rclcpp::get_logger("DeleteEntity"), "Successfully deleted: %s", name.c_str());
-                } else {
-                    RCLCPP_ERROR(rclcpp::get_logger("DeleteEntity"), "Failed to delete: %s, reason: %s",
-                                name.c_str(), response->status_message.c_str());
-                }
-            } catch (const std::exception& e) {
-                RCLCPP_ERROR(rclcpp::get_logger("DeleteEntity"), "Service call failed: %s", e.what());
-            }
+            // try {
+            //     auto response = future.get();
+            //     if (!response->success) {
+            //         RCLCPP_INFO(rclcpp::get_logger("DeleteEntity"), "Successfully deleted: %s", name.c_str());
+            //     } else {
+            //         RCLCPP_ERROR(rclcpp::get_logger("DeleteEntity"), "Failed to delete: %s, reason: %s",
+            //                     name.c_str(), response->status_message.c_str());
+            //     }
+            // } catch (const std::exception& e) {
+            //     RCLCPP_ERROR(rclcpp::get_logger("DeleteEntity"), "Service call failed: %s", e.what());
+            // }
         });
     }
 
