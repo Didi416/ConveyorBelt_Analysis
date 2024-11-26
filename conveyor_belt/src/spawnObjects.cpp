@@ -9,6 +9,7 @@
 #include <ament_index_cpp/get_package_share_directory.hpp>
 #include "gazebo_msgs/srv/spawn_entity.hpp"
 #include "gazebo_msgs/srv/delete_entity.hpp"
+#include "gazebo_msgs/msg/model_states.hpp"
 #include "rclcpp/rclcpp.hpp"
 
 using namespace std::chrono_literals;
@@ -19,23 +20,23 @@ public:
         : Node("conveyor_spawner"), object_counter_(0) {
         // Create clients for spawn and delete services
         spawn_client_ = this->create_client<gazebo_msgs::srv::SpawnEntity>("/spawn_entity");
-        delete_client_ = this->create_client<gazebo_msgs::srv::DeleteEntity>("/delete_entity");
-
+        // delete_client_ = this->create_client<gazebo_msgs::srv::DeleteEntity>("/delete_entity");
+        // model_states = this->create_subscription<gazebo_msgs::msg::ModelStates>("/gazebo/model_states", 10, std::bind(&ConveyorSpawner::statesCallback, this, std::placeholders::_1));
         // Timer to spawn objects periodically
-        spawn_timer_ = this->create_wall_timer(std::chrono::milliseconds(200), std::bind(&ConveyorSpawner::spawn_object, this));
+        spawn_timer_ = this->create_wall_timer(std::chrono::milliseconds(1500), std::bind(&ConveyorSpawner::spawn_object, this));
 
         // Random generator setup
         random_engine_ = std::default_random_engine(std::random_device{}());
-        shape_distribution_ = std::uniform_int_distribution<int>(0, 2); // Cube, Sphere, Cylinder
+        shape_distribution_ = std::uniform_int_distribution<int>(0, 2); // Cube, Sphere, Cylinder (currently)
     }
 
 private:
     rclcpp::Client<gazebo_msgs::srv::SpawnEntity>::SharedPtr spawn_client_;
-    rclcpp::Client<gazebo_msgs::srv::DeleteEntity>::SharedPtr delete_client_;
+    // rclcpp::Client<gazebo_msgs::srv::DeleteEntity>::SharedPtr delete_client_;
+    // rclcpp::Subscription<gazebo_msgs::msg::ModelStates>::SharedPtr model_states;
     rclcpp::TimerBase::SharedPtr spawn_timer_;
 
     int object_counter_;
-    std::vector<std::string> spawned_objects_;
 
     std::default_random_engine random_engine_;
     std::uniform_int_distribution<int> shape_distribution_;
@@ -79,9 +80,9 @@ private:
         request->initial_pose.position.z = 1.0;
 
         auto future = spawn_client_->async_send_request(request);
+
         // RCLCPP_INFO(this->get_logger(), "Spawned Test1");
         // try {
-            
         // } catch (const std::exception& e) {
         //     RCLCPP_ERROR(this->get_logger(), "Service call failed: %s", e.what());
         // }
@@ -98,27 +99,72 @@ private:
     //     }
     // }
 
-    void delete_object(const std::string& name) {
-        if (!delete_client_->wait_for_service(1s)) {
-            RCLCPP_ERROR(this->get_logger(), "Delete service not available.");
-            return;
-        }
+    // void statesCallback(const gazebo_msgs::msg::ModelStates::SharedPtr msg){
+    //     // RCLCPP_INFO(this->get_logger(), "Size: %2ld", msg->name.size());
+    //     for (long unsigned int i=0; i<msg->name.size(); i++){
+    //         // RCLCPP_INFO(this->get_logger(), "I: %2ld", i);
+    //         if(msg->name.at(i) == "ground_plane" || msg->name.at(i) == "conveyor_belt" || msg->name.at(i) == "realsense_camera_0"){
+    //             continue;
+    //         }
+    //         // RCLCPP_INFO(this->get_logger(), "Pose: %2f", msg->pose.at(i).position.z);
+    //         if (msg->pose.at(i).position.z < 0.5){
+                
+    //             // RCLCPP_INFO(this->get_logger(), "Object below 0.5");
+    //             delete_object(msg->name.at(i));
+    //         }
+    //     }
+    // }
+    // void delete_object(const std::string& name) {
+    //     if (!delete_client_->wait_for_service(std::chrono::seconds(1))) {
+    //         RCLCPP_ERROR(this->get_logger(), "Delete service not available.");
+    //         return;
+    //     }
 
-        auto request = std::make_shared<gazebo_msgs::srv::DeleteEntity::Request>();
-        request->name = name;
+    //     auto request = std::make_shared<gazebo_msgs::srv::DeleteEntity::Request>();
+    //     request->name = name;
 
-        auto future = delete_client_->async_send_request(request);
-        try {
-            auto response = future.get();
-            if (response->success) {
-                RCLCPP_INFO(this->get_logger(), "Deleted: %s", name.c_str());
-            } else {
-                RCLCPP_ERROR(this->get_logger(), "Failed to delete: %s", name.c_str());
-            }
-        } catch (const std::exception& e) {
-            RCLCPP_ERROR(this->get_logger(), "Service call failed: %s", e.what());
-        }
-    }
+    //     auto future = delete_client_->async_send_request(request);
+        
+    //     // Wait for the future to complete
+    //     auto result = rclcpp::spin_until_future_complete(this->get_node_base_interface(), future);
+        
+    //     if (result == rclcpp::FutureReturnCode::SUCCESS) {
+    //         auto response = future.get();
+    //         if (response->success) {
+    //             RCLCPP_INFO(this->get_logger(), "Successfully deleted: %s", name.c_str());
+    //         } else {
+    //             RCLCPP_ERROR(this->get_logger(), "Failed to delete: %s, reason: %s", 
+    //                         name.c_str(), response->status_message.c_str());
+    //         }
+    //     } else if (result == rclcpp::FutureReturnCode::TIMEOUT) {
+    //         RCLCPP_ERROR(this->get_logger(), "Delete service timed out for: %s", name.c_str());
+    //     } else if (result == rclcpp::FutureReturnCode::INTERRUPTED) {
+    //         RCLCPP_ERROR(this->get_logger(), "Delete service interrupted for: %s", name.c_str());
+    //     }
+    // }
+
+    // void delete_object(const std::string& name) {
+    //     if (!delete_client_->wait_for_service(1s)) {
+    //         RCLCPP_ERROR(this->get_logger(), "Delete service not available.");
+    //         return;
+    //     }
+
+    //     auto request = std::make_shared<gazebo_msgs::srv::DeleteEntity::Request>();
+    //     request->name = name;
+
+    //     auto future = delete_client_->async_send_request(request);
+    //     RCLCPP_INFO(this->get_logger(), "Deleted object.");
+    //     try {
+    //         auto response = future.get();
+    //         if (response->success) {
+    //             RCLCPP_INFO(this->get_logger(), "Deleted: %s", name.c_str());
+    //         } else {
+    //             RCLCPP_ERROR(this->get_logger(), "Failed to delete: %s", name.c_str());
+    //         }
+    //     } catch (const std::exception& e) {
+    //         RCLCPP_ERROR(this->get_logger(), "Service call failed: %s", e.what());
+    //     }
+    // }
 };
 
 int main(int argc, char** argv) {

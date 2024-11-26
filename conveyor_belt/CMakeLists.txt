@@ -27,10 +27,13 @@ add_executable(load_profile src/load_profile.cpp)
 ament_target_dependencies(load_profile rclcpp std_msgs sensor_msgs geometry_msgs cv_bridge image_transport OpenCV tf2_geometry_msgs)
 add_executable(spawnObjects src/spawnObjects.cpp)
 ament_target_dependencies(spawnObjects rclcpp std_msgs gazebo_msgs)
+add_executable(despawnObjects src/despawnObjects.cpp)
+ament_target_dependencies(despawnObjects rclcpp std_msgs gazebo_msgs)
 
 install(TARGETS
   load_profile
   spawnObjects
+  despawnObjects
   DESTINATION lib/conveyor_belt)
 
 if(BUILD_TESTING)
