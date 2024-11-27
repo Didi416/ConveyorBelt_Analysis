@@ -120,71 +120,32 @@
 //   return 0;
 // };
 #include <rclcpp/rclcpp.hpp>
-#include <image_transport/image_transport.hpp>
-#include <sensor_msgs/msg/image.hpp>
-#include <opencv2/opencv.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include <cv_bridge/cv_bridge.h>
+#include <sensor_msgs/msg/point_cloud2.hpp>
 
-class ColourMap : public rclcpp::Node {
+class LoadProfile : public rclcpp::Node {
   public:
-    ColourMap()  : Node("conveyor_analysis"){
-      depthSub_ = this->create_subscription<sensor_msgs::msg::Image>("/infra1/image_raw", 10,
-                      std::bind(&ColourMap::depthImageCallback, this, std::placeholders::_1));
+    LoadProfile()  : Node("conveyor_analysis"){
+      pointCloudSub_ = this->create_subscription<sensor_msgs::msg::PointCloud2>("/depth/color/points", 10,
+                      std::bind(&LoadProfile::pointCloudCallback, this, std::placeholders::_1));
 
-      imagePub_ = this->create_publisher<sensor_msgs::msg::Image>("/global_heat_map", 1);
+      // imagePub_ = this->create_publisher<sensor_msgs::msg::Image>("/global_heat_map", 1);
 
-      RCLCPP_INFO(this->get_logger(), "Depth Image Visualizer Node started.");
+      // RCLCPP_INFO(this->get_logger(), "Depth Image Visualizer Node started.");
     };
   
-    void depthImageCallback(const sensor_msgs::msg::Image::SharedPtr msg){
-      try{
-          // Convert ROS image message to OpenCV image
-          cv_bridge::CvImagePtr cv_ptr = cv_bridge::toCvCopy(msg, msg->encoding);
-
-          // Normalize depth image for better visualization
-          cv::Mat normalized_depth;
-          cv::normalize(cv_ptr->image, normalized_depth, 0, 255, cv::NORM_MINMAX, CV_8UC1);
-
-          // Invert depth values so that bottom is low (blue) and top is high (red)
-          // cv::Mat inverted_depth = 255 - normalized_depth;
-
-          // // Convert the inverted depth image to an 8-bit image
-          // inverted_depth.convertTo(inverted_depth, CV_8U);
-
-          // Apply a colormap
-          cv::Mat color_mapped_depth;
-          cv::applyColorMap(normalized_depth, color_mapped_depth, cv::COLORMAP_JET);
-
-          // Display the colorized depth image
-          // cv::imshow("Depth Image (Colorized)", color_mapped_depth);
-          // cv::waitKey(1);
-          // Convert the OpenCV image (cv::Mat) to a ROS Image message
-          std_msgs::msg::Header header;  // Create an empty header
-          header.stamp = this->get_clock()->now();  // Use the current time
-          header.frame_id = "camera_frame";  // Set the appropriate frame ID
-
-          // Convert cv::Mat to ROS Image message
-          auto color_image_msg = cv_bridge::CvImage(header, "bgr8", color_mapped_depth).toImageMsg();
-
-          // Publish the message
-          imagePub_->publish(*color_image_msg);
-
-        }
-        catch (const cv_bridge::Exception &e){
-            RCLCPP_ERROR(this->get_logger(), "cv_bridge exception: %s", e.what());
-        }
+    void pointCloudCallback(const sensor_msgs::msg::PointCloud2::SharedPtr msg){
+      auto msg2 = msg;
     }
+
   private:
-    rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr depthSub_;
-    rclcpp::Publisher<sensor_msgs::msg::Image>::SharedPtr imagePub_;
+    rclcpp::Subscription<sensor_msgs::msg::PointCloud2>::SharedPtr pointCloudSub_;
+    rclcpp::Publisher<sensor_msgs::msg::PointCloud2>::SharedPtr imagePub_;
 };
 
 int main(int argc, char** argv) {
   rclcpp::init(argc, argv);
   // create a ros2 node
-  auto node = std::make_shared<ColourMap>();
+  auto node = std::make_shared<LoadProfile>();
  
   // process ros2 callbacks until receiving a SIGINT (ctrl-c)
   rclcpp::spin(node);

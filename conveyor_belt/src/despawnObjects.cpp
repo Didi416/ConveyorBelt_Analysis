@@ -42,7 +42,7 @@ private:
 
         delete_client_->async_send_request(request, [name](rclcpp::Client<gazebo_msgs::srv::DeleteEntity>::SharedFuture future) {
             // try {
-            //     auto response = future.get();
+                auto response = future.get();
             //     if (!response->success) {
             //         RCLCPP_INFO(rclcpp::get_logger("DeleteEntity"), "Successfully deleted: %s", name.c_str());
             //     } else {

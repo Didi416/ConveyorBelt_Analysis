@@ -20,20 +20,29 @@ find_package(geometry_msgs REQUIRED)
 find_package(cv_bridge REQUIRED)
 find_package(image_transport REQUIRED)
 find_package(OpenCV REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(tf2_sensor_msgs REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(gazebo_msgs REQUIRED)
+find_package(PCL REQUIRED)
+find_package(pcl_ros REQUIRED)
+find_package(pcl_conversions REQUIRED)
 
-add_executable(load_profile src/load_profile.cpp)
-ament_target_dependencies(load_profile rclcpp std_msgs sensor_msgs geometry_msgs cv_bridge image_transport OpenCV tf2_geometry_msgs)
+add_executable(filter src/filter.cpp)
+ament_target_dependencies(filter rclcpp std_msgs sensor_msgs geometry_msgs tf2 tf2_ros tf2_sensor_msgs tf2_geometry_msgs pcl_ros pcl_conversions)
+add_executable(loadProfile src/loadProfile.cpp)
+ament_target_dependencies(loadProfile rclcpp std_msgs sensor_msgs geometry_msgs)
 add_executable(spawnObjects src/spawnObjects.cpp)
 ament_target_dependencies(spawnObjects rclcpp std_msgs gazebo_msgs)
 add_executable(despawnObjects src/despawnObjects.cpp)
 ament_target_dependencies(despawnObjects rclcpp std_msgs gazebo_msgs)
 
 install(TARGETS
-  load_profile
+  loadProfile
   spawnObjects
   despawnObjects
+  filter
   DESTINATION lib/conveyor_belt)
 
 if(BUILD_TESTING)

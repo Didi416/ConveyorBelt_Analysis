@@ -1,0 +1,221 @@
+Starting >>> conveyorbelt_msgs
+Starting >>> conveyor_belt
+Starting >>> conveyorbelt_gazebo
+Starting >>> realsense_gazebo_plugin
+Finished <<< conveyorbelt_gazebo [0.08s]
+Finished <<< realsense_gazebo_plugin [0.12s]                                                                                                
+Finished <<< conveyorbelt_msgs [0.32s]                                                              
+Starting >>> ros2_conveyorbelt
+Finished <<< ros2_conveyorbelt [0.09s]                                                           
+--- stderr: conveyor_belt                             
+** WARNING ** io features related to pcap will be disabled
+In file included from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:9:
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:152:8: error: ‘MD5Sum’ is not a class template
+  152 | struct MD5Sum<pcl::PointCloud<T>>
+      |        ^~~~~~
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:157:61: error: ‘PointCloud2’ is not a member of ‘sensor_msgs’; did you mean ‘sensor_msgs::msg::PointCloud2’?
+  157 |   static const uint64_t static_value1 = MD5Sum<sensor_msgs::PointCloud2>::static_value1;
+      |                                                             ^~~~~~~~~~~
+In file included from /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/point_cloud2.hpp:7,
+                 from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:2:
+/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/point_cloud2__struct.hpp:235:7: note: ‘sensor_msgs::msg::PointCloud2’ declared here
+  235 | using PointCloud2 =
+      |       ^~~~~~~~~~~
+In file included from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:9:
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:157:72: error: template argument 1 is invalid
+  157 |   static const uint64_t static_value1 = MD5Sum<sensor_msgs::PointCloud2>::static_value1;
+      |                                                                        ^
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:158:61: error: ‘PointCloud2’ is not a member of ‘sensor_msgs’; did you mean ‘sensor_msgs::msg::PointCloud2’?
+  158 |   static const uint64_t static_value2 = MD5Sum<sensor_msgs::PointCloud2>::static_value2;
+      |                                                             ^~~~~~~~~~~
+In file included from /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/point_cloud2.hpp:7,
+                 from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:2:
+/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/point_cloud2__struct.hpp:235:7: note: ‘sensor_msgs::msg::PointCloud2’ declared here
+  235 | using PointCloud2 =
+      |       ^~~~~~~~~~~
+In file included from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:9:
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:158:72: error: template argument 1 is invalid
+  158 |   static const uint64_t static_value2 = MD5Sum<sensor_msgs::PointCloud2>::static_value2;
+      |                                                                        ^
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:161:21: error: ‘static_value1’ is not a type
+  161 |   ROS_STATIC_ASSERT(static_value1 == 0x1158d486dd51d683ULL);
+      |                     ^~~~~~~~~~~~~
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:161:35: error: expected ‘,’ or ‘...’ before ‘==’ token
+  161 |   ROS_STATIC_ASSERT(static_value1 == 0x1158d486dd51d683ULL);
+      |                                   ^~
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:162:21: error: ‘static_value2’ is not a type
+  162 |   ROS_STATIC_ASSERT(static_value2 == 0xce2f1be655c3c181ULL);
+      |                     ^~~~~~~~~~~~~
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:162:35: error: expected ‘,’ or ‘...’ before ‘==’ token
+  162 |   ROS_STATIC_ASSERT(static_value2 == 0xce2f1be655c3c181ULL);
+      |                                   ^~
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:162:3: error: ‘int ros::message_traits::MD5Sum<T>::ROS_STATIC_ASSERT(int)’ cannot be overloaded with ‘int ros::message_traits::MD5Sum<T>::ROS_STATIC_ASSERT(int)’
+  162 |   ROS_STATIC_ASSERT(static_value2 == 0xce2f1be655c3c181ULL);
+      |   ^~~~~~~~~~~~~~~~~
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:161:3: note: previous declaration ‘int ros::message_traits::MD5Sum<T>::ROS_STATIC_ASSERT(int)’
+  161 |   ROS_STATIC_ASSERT(static_value1 == 0x1158d486dd51d683ULL);
+      |   ^~~~~~~~~~~~~~~~~
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp: In static member function ‘static const char* ros::message_traits::MD5Sum<T>::value()’:
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:154:59: error: ‘PointCloud2’ is not a member of ‘sensor_msgs’; did you mean ‘sensor_msgs::msg::PointCloud2’?
+  154 |   static const char * value() {return MD5Sum<sensor_msgs::PointCloud2>::value();}
+      |                                                           ^~~~~~~~~~~
+In file included from /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/point_cloud2.hpp:7,
+                 from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:2:
+/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/point_cloud2__struct.hpp:235:7: note: ‘sensor_msgs::msg::PointCloud2’ declared here
+  235 | using PointCloud2 =
+      |       ^~~~~~~~~~~
+In file included from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:9:
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:154:70: error: template argument 1 is invalid
+  154 |   static const char * value() {return MD5Sum<sensor_msgs::PointCloud2>::value();}
+      |                                                                      ^
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp: At global scope:
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:166:8: error: ‘DataType’ is not a class template
+  166 | struct DataType<pcl::PointCloud<T>>
+      |        ^~~~~~~~
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp: In static member function ‘static const char* ros::message_traits::DataType<T>::value()’:
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:168:61: error: ‘PointCloud2’ is not a member of ‘sensor_msgs’; did you mean ‘sensor_msgs::msg::PointCloud2’?
+  168 |   static const char * value() {return DataType<sensor_msgs::PointCloud2>::value();}
+      |                                                             ^~~~~~~~~~~
+In file included from /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/point_cloud2.hpp:7,
+                 from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:2:
+/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/point_cloud2__struct.hpp:235:7: note: ‘sensor_msgs::msg::PointCloud2’ declared here
+  235 | using PointCloud2 =
+      |       ^~~~~~~~~~~
+In file included from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:9:
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:168:72: error: template argument 1 is invalid
+  168 |   static const char * value() {return DataType<sensor_msgs::PointCloud2>::value();}
+      |                                                                        ^
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp: At global scope:
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:173:8: error: ‘Definition’ is not a class template
+  173 | struct Definition<pcl::PointCloud<T>>
+      |        ^~~~~~~~~~
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp: In static member function ‘static const char* ros::message_traits::Definition<T>::value()’:
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:175:63: error: ‘PointCloud2’ is not a member of ‘sensor_msgs’; did you mean ‘sensor_msgs::msg::PointCloud2’?
+  175 |   static const char * value() {return Definition<sensor_msgs::PointCloud2>::value();}
+      |                                                               ^~~~~~~~~~~
+In file included from /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/point_cloud2.hpp:7,
+                 from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:2:
+/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/point_cloud2__struct.hpp:235:7: note: ‘sensor_msgs::msg::PointCloud2’ declared here
+  235 | using PointCloud2 =
+      |       ^~~~~~~~~~~
+In file included from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:9:
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:175:74: error: template argument 1 is invalid
+  175 |   static const char * value() {return Definition<sensor_msgs::PointCloud2>::value();}
+      |                                                                          ^
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp: At global scope:
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:183:8: error: ‘HasHeader’ is not a class template
+  183 | struct HasHeader<pcl::PointCloud<T>>: FalseType {};
+      |        ^~~~~~~~~
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:183:49: error: expected class-name before ‘{’ token
+  183 | struct HasHeader<pcl::PointCloud<T>>: FalseType {};
+      |                                                 ^
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:186:8: error: ‘TimeStamp’ is not a class template
+  186 | struct TimeStamp<pcl::PointCloud<T>>
+      |        ^~~~~~~~~
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:193:15: error: ‘Time’ in namespace ‘ros’ does not name a type
+  193 |   static ros::Time * pointer(typename pcl::PointCloud<T> & m)
+      |               ^~~~
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:199:15: error: ‘Time’ in namespace ‘ros’ does not name a type
+  199 |   static ros::Time const * pointer(const typename pcl::PointCloud<T> & m)
+      |               ^~~~
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:205:15: error: ‘Time’ in namespace ‘ros’ does not name a type
+  205 |   static ros::Time value(const typename pcl::PointCloud<T> & m)
+      |               ^~~~
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:211:38: error: ‘Header’ is not a member of ‘std_msgs’; did you mean ‘std_msgs::msg::Header’?
+  211 |   static boost::shared_ptr<std_msgs::Header> header_;
+      |                                      ^~~~~~
+In file included from /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/point_cloud2__struct.hpp:20,
+                 from /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/point_cloud2.hpp:7,
+                 from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:2:
+/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__struct.hpp:140:7: note: ‘std_msgs::msg::Header’ declared here
+  140 | using Header =
+      |       ^~~~~~
+In file included from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:9:
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:211:44: error: template argument 1 is invalid
+  211 |   static boost::shared_ptr<std_msgs::Header> header_;
+      |                                            ^
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:212:38: error: ‘Header’ is not a member of ‘std_msgs’; did you mean ‘std_msgs::msg::Header’?
+  212 |   static boost::shared_ptr<std_msgs::Header> header_const_;
+      |                                      ^~~~~~
+In file included from /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/point_cloud2__struct.hpp:20,
+                 from /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/point_cloud2.hpp:7,
+                 from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:2:
+/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__struct.hpp:140:7: note: ‘std_msgs::msg::Header’ declared here
+  140 | using Header =
+      |       ^~~~~~
+In file included from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:9:
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:212:44: error: template argument 1 is invalid
+  212 |   static boost::shared_ptr<std_msgs::Header> header_const_;
+      |                                            ^
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:216:8: error: ‘FrameId’ is not a class template
+  216 | struct FrameId<pcl::PointCloud<T>>
+      |        ^~~~~~~
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:228:8: error: ‘Serializer’ is not a class template
+  228 | struct Serializer<pcl::PointCloud<T>>
+      |        ^~~~~~~~~~
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp: In static member function ‘static void ros::serialization::Serializer<T>::read(Stream&, pcl::PointCloud<PointT>&)’:
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:270:15: error: ‘Header’ is not a member of ‘std_msgs’; did you mean ‘std_msgs::msg::Header’?
+  270 |     std_msgs::Header header;
+      |               ^~~~~~
+In file included from /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/point_cloud2__struct.hpp:20,
+                 from /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/point_cloud2.hpp:7,
+                 from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:2:
+/opt/ros/humble/include/std_msgs/std_msgs/msg/detail/header__struct.hpp:140:7: note: ‘std_msgs::msg::Header’ declared here
+  140 | using Header =
+      |       ^~~~~~
+In file included from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:9:
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:271:17: error: ‘header’ was not declared in this scope
+  271 |     stream.next(header);
+      |                 ^~~~~~
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:277:30: error: ‘PointField’ is not a member of ‘sensor_msgs’; did you mean ‘sensor_msgs::msg::PointField’?
+  277 |     std::vector<sensor_msgs::PointField> fields;
+      |                              ^~~~~~~~~~
+In file included from /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/point_cloud2__struct.hpp:22,
+                 from /opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/point_cloud2.hpp:7,
+                 from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:2:
+/opt/ros/humble/include/sensor_msgs/sensor_msgs/msg/detail/point_field__struct.hpp:180:7: note: ‘sensor_msgs::msg::PointField’ declared here
+  180 | using PointField =
+      |       ^~~~~~~~~~
+In file included from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:9:
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:277:40: error: template argument 1 is invalid
+  277 |     std::vector<sensor_msgs::PointField> fields;
+      |                                        ^
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:277:40: error: template argument 2 is invalid
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:281:70: error: ‘getMapping’ is not a member of ‘pcl::detail’; did you mean ‘FieldMapping’?
+  281 |     boost::shared_ptr<pcl::MsgFieldMap> & mapping_ptr = pcl::detail::getMapping(m);
+      |                                                                      ^~~~~~~~~~
+      |                                                                      FieldMapping
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:284:28: error: ‘make_shared’ is not a member of ‘boost’
+  284 |       mapping_ptr = boost::make_shared<pcl::MsgFieldMap>();
+      |                            ^~~~~~~~~~~
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:284:28: note: suggested alternatives:
+In file included from /usr/include/c++/11/memory:77,
+                 from /opt/ros/humble/include/rclcpp/rclcpp/rclcpp.hpp:153,
+                 from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:1:
+/usr/include/c++/11/bits/shared_ptr.h:875:5: note:   ‘std::make_shared’
+  875 |     make_shared(_Args&&... __args)
+      |     ^~~~~~~~~~~
+In file included from /usr/include/pcl-1.12/pcl/PCLHeader.h:3,
+                 from /usr/include/pcl-1.12/pcl/point_cloud.h:47,
+                 from /opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:45,
+                 from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:9:
+/usr/include/pcl-1.12/pcl/memory.h:122:66: note:   ‘pcl::make_shared’
+  122 | std::enable_if_t<!has_custom_allocator<T>::value, shared_ptr<T>> make_shared(Args&&... args)
+      |                                                                  ^~~~~~~~~~~
+In file included from /home/dyandra/ros2_ws/src/ConveyorBelt_Analysis/conveyor_belt/src/filter.cpp:9:
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:284:56: error: expected primary-expression before ‘>’ token
+  284 |       mapping_ptr = boost::make_shared<pcl::MsgFieldMap>();
+      |                                                        ^
+/opt/ros/humble/include/pcl_ros/pcl_ros/point_cloud.hpp:284:58: error: expected primary-expression before ‘)’ token
+  284 |       mapping_ptr = boost::make_shared<pcl::MsgFieldMap>();
+      |                                                          ^
+gmake[2]: *** [CMakeFiles/filter.dir/build.make:76: CMakeFiles/filter.dir/src/filter.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:143: CMakeFiles/filter.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2
+---
+Failed   <<< conveyor_belt [4.99s, exited with code 2]
+
+Summary: 4 packages finished [5.13s]
+  1 package failed: conveyor_belt
+  1 package had stderr output: conveyor_belt
+
