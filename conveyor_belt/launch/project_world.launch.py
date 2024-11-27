@@ -17,7 +17,7 @@ def generate_launch_description():
     
     # identify paths to requried world
     world = os.path.join(pkg_project, 'worlds', 'project_world_2.world')
-    rviz_config_dir = os.path.join(pkg_project, 'rviz', 'rviz.rviz')
+    rviz_config_dir = os.path.join(pkg_project, 'rviz', 'rviz2.rviz')
     
     # set use_sim_time as well as global coordinates for the turtlebot upon launch
     use_sim_time = LaunchConfiguration('use_sim_time', default='true'),
@@ -99,7 +99,8 @@ def generate_launch_description():
             output='screen',
         ),
 
-        Node(
+        # Launch rviz, spawn, despawn and load profile nodes
+        Node( 
             package='rviz2',
             executable='rviz2',
             name='rviz2',
@@ -107,7 +108,6 @@ def generate_launch_description():
             parameters=[{'use_sim_time': use_sim_time}],
             output='screen'),
 
-        # Launch spawn node
         Node(
             package='conveyor_belt',
             executable='spawnObjects',
