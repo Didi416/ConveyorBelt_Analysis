@@ -120,10 +120,10 @@ def generate_launch_description():
             name='despawnObjects',
             output='screen'),
 
-        Node(
-            package='conveyor_belt',
-            executable='load_profile',
-            name='load_profile',
-            output='screen'),
+        # Node(
+        #     package='conveyor_belt',
+        #     executable='load_profile',
+        #     name='load_profile',
+        #     output='screen'),
     ])
     return gazebo_LD
