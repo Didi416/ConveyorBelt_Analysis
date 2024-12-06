@@ -97,7 +97,7 @@
             <geometry>
               <mesh>
                 <scale>1 1 1</scale>
-                <uri>model://new_conveyor_belt/meshes/new_belt_angled.dae</uri>
+                <uri>model://new_conveyor_belt/meshes/larger_belt.dae</uri>
               </mesh>
             </geometry>
           </visual>
@@ -105,7 +105,7 @@
             <geometry>
               <mesh>
                 <scale>1 1 1</scale>
-                <uri>model://new_conveyor_belt/meshes/new_belt_angled.dae</uri>
+                <uri>model://new_conveyor_belt/meshes/larger_belt.dae</uri>
               </mesh>
             </geometry>
             <max_contacts>10</max_contacts>
@@ -148,7 +148,7 @@
           <collision name='belt_collision'>
             <geometry>
               <box>
-                <size>0.4 3.2 1e-05</size>
+                <size>0.4 20.0 1e-05</size>
               </box>
             </geometry>
             <surface>

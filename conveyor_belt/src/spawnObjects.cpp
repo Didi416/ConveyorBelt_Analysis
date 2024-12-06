@@ -15,7 +15,7 @@ public:
         // Create clients for spawn services
         spawn_client_ = this->create_client<gazebo_msgs::srv::SpawnEntity>("/spawn_entity");
         // Timer to spawn objects periodically
-        spawn_timer_ = this->create_wall_timer(std::chrono::milliseconds(700), std::bind(&ConveyorSpawner::spawn_object, this));
+        spawn_timer_ = this->create_wall_timer(std::chrono::milliseconds(500), std::bind(&ConveyorSpawner::spawn_object, this));
 
         // Random generator setup
         random_engine_ = std::default_random_engine(std::random_device{}());
@@ -66,7 +66,7 @@ private:
         request->xml = sdf_content;
         request->robot_namespace = "/";
         request->initial_pose.position.x = 0.0; // Adjust position
-        request->initial_pose.position.y = -1.5;
+        request->initial_pose.position.y = -10;
         request->initial_pose.position.z = 1.0;
 
         auto future = spawn_client_->async_send_request(request);

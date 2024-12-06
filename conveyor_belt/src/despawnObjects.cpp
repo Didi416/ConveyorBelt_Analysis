@@ -24,7 +24,7 @@ private:
                 continue;
             }
             // RCLCPP_INFO(this->get_logger(), "Pose: %2f", msg->pose.at(i).position.z);
-            if (msg->pose.at(i).position.z < 0.5){
+            if (msg->pose.at(i).position.y > 9){
                 
                 // RCLCPP_INFO(this->get_logger(), "Object below 0.5");
                 delete_object(msg->name.at(i));
