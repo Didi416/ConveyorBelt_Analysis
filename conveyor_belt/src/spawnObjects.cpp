@@ -66,8 +66,8 @@ private:
         request->xml = sdf_content;
         request->robot_namespace = "/";
         request->initial_pose.position.x = 0.0; // Adjust position
-        request->initial_pose.position.y = -10;
-        request->initial_pose.position.z = 1.0;
+        request->initial_pose.position.y = -9;
+        request->initial_pose.position.z = 2.0;
 
         auto future = spawn_client_->async_send_request(request);
     }

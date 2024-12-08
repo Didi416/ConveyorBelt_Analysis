@@ -108,11 +108,11 @@ def generate_launch_description():
             parameters=[{'use_sim_time': use_sim_time}],
             output='screen'),
 
-        # Node(
-        #     package='conveyor_belt',
-        #     executable='spawnObjects',
-        #     name='spawnObjects',
-        #     output='screen'),
+        Node(
+            package='conveyor_belt',
+            executable='spawnObjects',
+            name='spawnObjects',
+            output='screen'),
         
         Node(
             package='conveyor_belt',
