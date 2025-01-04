@@ -1,4 +1,4 @@
-#include "gazebo_msgs/srv/delete_entity.hpp"
+#include "conveyor_belt_msgs/srv/batch_delete_entities.hpp"
 #include "gazebo_msgs/msg/model_states.hpp"
 #include "rclcpp/rclcpp.hpp"
 
@@ -8,39 +8,43 @@ class ConveyorDespawner : public rclcpp::Node {
 public:
     ConveyorDespawner() : Node("conveyor_despawner") {
         // Create clients for delete services
-        delete_client_ = this->create_client<gazebo_msgs::srv::DeleteEntity>("/delete_entity");
+        delete_client_ = this->create_client<conveyor_belt_msgs::srv::BatchDeleteEntities>("/batch_delete_entities");
         model_states = this->create_subscription<gazebo_msgs::msg::ModelStates>("/gazebo/model_states", 10, std::bind(&ConveyorDespawner::statesCallback, this, std::placeholders::_1));
     }
 
 private:
-    rclcpp::Client<gazebo_msgs::srv::DeleteEntity>::SharedPtr delete_client_;
+    rclcpp::Client<conveyor_belt_msgs::srv::BatchDeleteEntities>::SharedPtr delete_client_;
     rclcpp::Subscription<gazebo_msgs::msg::ModelStates>::SharedPtr model_states;
 
     void statesCallback(const gazebo_msgs::msg::ModelStates::SharedPtr msg){
         // RCLCPP_INFO(this->get_logger(), "Size: %2ld", msg->name.size());
+        std::vector<std::string> names;
         for (long unsigned int i=0; i<msg->name.size(); i++){
             // RCLCPP_INFO(this->get_logger(), "I: %2ld", i);
             if(msg->name.at(i) == "ground_plane" || msg->name.at(i) == "conveyor_belt" || msg->name.at(i) == "camera_robot"){
                 continue;
             }
             // RCLCPP_INFO(this->get_logger(), "Pose: %2f", msg->pose.at(i).position.z);
-            if (msg->pose.at(i).position.y > 9 || msg->pose.at(i).position.z < 0.5){
-                
-                // RCLCPP_INFO(this->get_logger(), "Object below 0.5");
-                delete_object(msg->name.at(i));
+            if (msg->pose.at(i).position.y > 9 || msg->pose.at(i).position.z < 0.7){
+                names.push_back(msg->name.at(i));
+
+                // RCLCPP_INFO(this->get_logger(), "Object below 0.7");
+                if (names.size() == 10) {
+                    delete_objects(names);
+                }
             }
         }
     }
-    void delete_object(const std::string& name) {
+    void delete_objects(const std::vector<std::string> names) {
         if (!delete_client_->wait_for_service(std::chrono::seconds(2))) {
             RCLCPP_ERROR(this->get_logger(), "Service /delete_entity not available");
             return;
         }
 
-        auto request = std::make_shared<gazebo_msgs::srv::DeleteEntity::Request>();
-        request->name = name;
+        auto request = std::make_shared<conveyor_belt_msgs::srv::BatchDeleteEntities::Request>();
+        request->names = names;
 
-        delete_client_->async_send_request(request, [name](rclcpp::Client<gazebo_msgs::srv::DeleteEntity>::SharedFuture future) {
+        delete_client_->async_send_request(request, [names](rclcpp::Client<conveyor_belt_msgs::srv::BatchDeleteEntities>::SharedFuture future) {
             // try {
                 auto response = future.get();
             //     if (!response->success) {

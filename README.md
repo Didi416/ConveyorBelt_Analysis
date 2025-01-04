@@ -29,5 +29,5 @@ Launch RViz manually if launch file doesn't work (it should work fine - depth to
 
 Need to do:
 
-- Working on load profile generation (filter.py)
+- Working on batchDeleteEntities service to improve performance and frame rate (hopefully)
 

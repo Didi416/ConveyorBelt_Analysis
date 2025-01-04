@@ -27,6 +27,7 @@ find_package(tf2_ros REQUIRED)
 find_package(tf2_sensor_msgs REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(gazebo_msgs REQUIRED)
+find_package(conveyor_belt_msgs REQUIRED)
 # find_package(PCL REQUIRED)
 # find_package(pcl_ros REQUIRED)
 # find_package(pcl_conversions REQUIRED)
@@ -38,11 +39,14 @@ find_package(gazebo_msgs REQUIRED)
 add_executable(spawnObjects src/spawnObjects.cpp)
 ament_target_dependencies(spawnObjects rclcpp std_msgs gazebo_msgs)
 add_executable(despawnObjects src/despawnObjects.cpp)
-ament_target_dependencies(despawnObjects rclcpp std_msgs gazebo_msgs)
+ament_target_dependencies(despawnObjects rclcpp std_msgs gazebo_msgs conveyor_belt_msgs)
+add_executable(service src/service.cpp)
+ament_target_dependencies(service rclcpp gazebo_msgs conveyor_belt_msgs)
 
 install(TARGETS
   spawnObjects
   despawnObjects
+  service
   DESTINATION lib/conveyor_belt)
 
 # Install Python scripts

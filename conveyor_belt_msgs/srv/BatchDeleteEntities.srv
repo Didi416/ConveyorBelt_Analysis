@@ -1,0 +1,5 @@
+string[] names  # List of model names to delete
+---
+bool success     # True if all specified models were deleted
+string message   # Additional info
+
